@@ -1,8 +1,10 @@
 package com.example.bluecodingtube
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bluecodingtube.databinding.ActivityMainBinding
 import com.example.codingtube.adapter.ViewPagerAdapter
@@ -31,20 +33,15 @@ class MainActivity : AppCompatActivity() {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             })
         }
-//        val iconList = ArrayList<Drawable?>()
-//        iconList.add(ContextCompat.getDrawable(this, R.drawable.baseline_home_24))
-//        iconList.add(ContextCompat.getDrawable(this, R.drawable.baseline_search_24))
-//        iconList.add(ContextCompat.getDrawable(this, R.drawable.baseline_toc_24))
+        val iconList = ArrayList<Drawable?>()
+        iconList.add(ContextCompat.getDrawable(this, R.drawable.baseline_home_24))
+        iconList.add(ContextCompat.getDrawable(this, R.drawable.baseline_search_24))
+        iconList.add(ContextCompat.getDrawable(this, R.drawable.baseline_toc_24))
 
         TabLayoutMediator(binding.tlNavigationView, binding.mainView) { tab, position ->
             Log.e("YMC", "ViewPager position: $position")
-//            tab.icon = iconList[position]
-            when (position) {
-                0 -> tab.text = "검색 결과"
-                1 -> tab.text = "내 보관함"
-                2 -> tab.text = "test"
+            tab.icon = iconList[position]
 
-            }
         }.attach()
     }
 }
