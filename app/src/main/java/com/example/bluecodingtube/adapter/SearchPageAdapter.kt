@@ -1,5 +1,6 @@
 package com.example.bluecodingtube.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -7,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bluecodingtube.databinding.SearchItemBinding
 
-class SearchPageAdapter : RecyclerView.Adapter<SearchPageAdapter.searchItemViewHolder>(){
+class SearchPageAdapter(private val searchContext : Context) : RecyclerView.Adapter<SearchPageAdapter.searchItemViewHolder>(){
 
     val items = ArrayList<searchData>()
     override fun getItemCount()= items.size
@@ -15,6 +16,9 @@ class SearchPageAdapter : RecyclerView.Adapter<SearchPageAdapter.searchItemViewH
 
     override fun onBindViewHolder(holder: SearchPageAdapter.searchItemViewHolder, position: Int) {
 
+        val item = items[position]
+        holder.title.text = item.title
+        holder.searchImage.setImageResource(item.imageResourceId)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchPageAdapter.searchItemViewHolder {

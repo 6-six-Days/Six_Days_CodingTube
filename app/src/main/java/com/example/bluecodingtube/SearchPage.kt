@@ -1,6 +1,5 @@
 package com.example.bluecodingtube
 
-import android.app.appsearch.AppSearchManager.SearchContext
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,7 +32,7 @@ class SearchPage : Fragment() {
          binding = FragmentSearchPageBinding.inflate(inflater, container, false)
 
         setupView()
-        setupListener()
+       // setupListener()
 
         return binding.root
     }
@@ -50,6 +49,24 @@ class SearchPage : Fragment() {
 
     }
 
+    // 데이터 값 실험
+    private fun generateDummyData(): List<searchData> {
+        val dummyData = mutableListOf<searchData>()
+        for (i in 1..20) {
+            val imageResourceId = when (i) {
+                1 -> R.drawable.search_pic_item
+                2 -> R.drawable.search_pic_item
+                // 나머지 이미지에 대한 리소스 ID를 설정
+                else -> R.drawable.search_pic_item // 기본 이미지 리소스 ID를 설정
+            }
+            val searchData = searchData(imageResourceId, "Love lee")
+            dummyData.add(searchData)
+        }
+        return dummyData
+    }
+
+
+    /* 검색
     private fun setupListener(){
         val searchText = binding.searchtext
         val searchButton = binding.searchbutton
@@ -61,5 +78,5 @@ class SearchPage : Fragment() {
             }
         }
     }
-
+*/
 }
