@@ -99,5 +99,8 @@ dependencies {
 
     implementation ("com.localebro:okhttpprofiler:1.0.8")
 
+    //Circle
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 
 }
