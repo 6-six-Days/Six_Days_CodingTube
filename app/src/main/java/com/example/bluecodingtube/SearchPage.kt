@@ -24,6 +24,18 @@ class SearchPage : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        adapter = SearchPageAdapter(generateDummyData())
+        binding.searchRecycleView.adapter = adapter
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        SearchContext = context
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,7 +56,7 @@ class SearchPage : Fragment() {
 
         binding.searchRecycleView.layoutManager = grid
 
-        binding.searchRecycleView.adapter = adapter
+
         binding.searchRecycleView.itemAnimator = null
 
     }
@@ -56,7 +68,7 @@ class SearchPage : Fragment() {
             val imageResourceId = when (i) {
                 1 -> R.drawable.search_pic_item
                 2 -> R.drawable.search_pic_item
-                // 나머지 이미지에 대한 리소스 ID를 설정
+
                 else -> R.drawable.search_pic_item // 기본 이미지 리소스 ID를 설정
             }
             val searchData = searchData(imageResourceId, "Love lee")
