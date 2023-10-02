@@ -1,3 +1,5 @@
+package com.example.bluecodingtube
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.bluecodingtube.data.Snippet
 import com.example.bluecodingtube.databinding.FragmentSearchPageBinding
-import com.example.bluecodingtube.data.YoutubeVideo
 import com.example.bluecodingtube.dataclass.searchData
 import com.example.bluecodingtube.service.RetrofitClient
-import com.example.bluecodingtube.service.YouTubeService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,17 +25,6 @@ class SearchPage : Fragment() {
     private lateinit var adapter: SearchPageAdapter
 
     private var searchItem: ArrayList<searchData> = ArrayList()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        adapter = SearchPageAdapter(requireContext()) // 어댑터 초기화
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.searchRecycleView.adapter = adapter
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         searchContext = context
@@ -57,7 +46,13 @@ class SearchPage : Fragment() {
         val grid = GridLayoutManager(searchContext, spanCount)
         binding.searchRecycleView.layoutManager = grid
         binding.searchRecycleView.itemAnimator = null
+
+        adapter = SearchPageAdapter(searchContext)
+        binding.searchRecycleView.adapter = adapter
     }
+
+
+
 
     private fun setupListener() {
         val searchText = binding.searchtext
@@ -75,8 +70,11 @@ class SearchPage : Fragment() {
     }
 
     private fun fetchYoutubeVideos(query: String) {
+
+        adapter.clearItem()
+
         val service = RetrofitClient.searchService
-        val apiKey = ""
+        val apiKey = "AIzaSyBfaJPCzYR-ff1z4Xbx0lVGwoS6hpS2Sj8"
         service.getYoutubeVideosSearch(apiKey, query, 1, 80)
             .enqueue(object : retrofit2.Callback<Snippet> {
                 override fun onResponse(
@@ -87,22 +85,22 @@ class SearchPage : Fragment() {
                         val body = response.body()
                         body?.items?.let { items ->
                             val thumbnails = items.mapNotNull {
-                                it.snippet?.thumbnails?.medium?.url
-                            }
+                                it.snippet?.thumbnails?.medium?.url}
                             val titles = items.mapNotNull {
                                 it.snippet?.title
                             }
-                            adapter.setThumbnailUrls(thumbnails)
-                            adapter.setTitles(titles)
-                            adapter.notifyDataSetChanged()
+                            searchItem.add(searchData(thumbnails,titles))
                         }
+
+                        adapter.items = searchItem
+                        adapter.notifyDataSetChanged()
+
                     } else {
                         Log.e("SearchPage", "API 요청이 실패했습니다.")
                     }
                 }
 
                 override fun onFailure(call: Call<Snippet>, t: Throwable) {
-                    // 오류 처리 코드 추가
                     Log.e("SearchPage", "API 요청 중 오류 발생", t)
                 }
             })
