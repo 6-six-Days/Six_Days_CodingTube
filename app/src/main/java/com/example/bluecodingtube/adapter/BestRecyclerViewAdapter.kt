@@ -3,37 +3,62 @@ package com.example.bluecodingtube.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.bluecodingtube.data.Items
+import com.example.bluecodingtube.data.PlayList
+import com.example.bluecodingtube.data.Snippet
+import com.example.bluecodingtube.data.YoutubeVideoInfo
 import com.example.bluecodingtube.databinding.ActivityBestRecyclerViewBinding
 import com.example.bluecodingtube.dataclass.Item
+import com.example.bluecodingtube.service.RetrofitClient
+import com.example.bluecodingtube.service.bestApi.VideoDiffUtill
+import com.example.bluecodingtube.viewModel.BestViewModel
 
 
-class BestRecyclerViewAdapter(val Item:MutableList<Item>) :RecyclerView.Adapter<BestRecyclerViewAdapter.ViewHolder>() {
+class BestRecyclerViewAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
      val Tag="로그"
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): BestRecyclerViewAdapter.ViewHolder {
-        val inflater=LayoutInflater.from(parent.context)
-        val binding= ActivityBestRecyclerViewBinding.inflate(inflater,parent,false)
+    private var oldItems= emptyList<PlayList>()
 
-        return ViewHolder(binding)
+
+
+    class itemHolder(itemView: ActivityBestRecyclerViewBinding):RecyclerView.ViewHolder(itemView.root){
+        private val binding=itemView
+        fun setdata(data: PlayList){
+            binding.title.text=data.snippet.title
+            binding.id.text=data.snippet.channelId
+            binding.viewCount.text=data.snippet.publishedAt
+            Glide.with(binding.root).load(data.snippet.thumbnails.medium.url)
+               .into(binding.thumbnail)
+    Log.d("데이터","${data.toString()}")
+        }
     }
 
-    override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-        val pos=Item[position]
-        holder.bestImage.setImageResource(pos.dummy)
-        Log.d(Tag,"BestRecyclerViewAdapter Called")
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view=ActivityBestRecyclerViewBinding.inflate(LayoutInflater.from(parent.context),parent,false
+        )
+        return itemHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as itemHolder).setdata(oldItems[position])
     }
 
     override fun getItemCount(): Int {
-        return Item.size
+        return oldItems.size
     }
 
-    class ViewHolder(binding: ActivityBestRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun setData(newList: List<PlayList>){
+        val videoDiff= VideoDiffUtill(oldItems,newList)
+        val diff=DiffUtil.calculateDiff(videoDiff)
+        oldItems=newList
+        diff.dispatchUpdatesTo(this)
 
-        val bestImage = binding.dummy
     }
+
 
 }

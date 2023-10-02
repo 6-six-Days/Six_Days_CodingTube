@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bluecodingtube.databinding.SearchItemBinding
+import com.example.bluecodingtube.service.YouTubeService
 
 class SearchPageAdapter(private val searchContext: List<searchData>) : RecyclerView.Adapter<SearchPageAdapter.searchItemViewHolder>(){
 
@@ -22,6 +23,7 @@ class SearchPageAdapter(private val searchContext: List<searchData>) : RecyclerV
         val item = items[position]
         holder.title.text = item.title
         holder.searchImage.setImageResource(item.imageResourceId)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchPageAdapter.searchItemViewHolder {

@@ -60,6 +60,7 @@ data class Id(
 
 @Parcelize
 data class Snippet(
+
     @SerializedName("publishedAt")
     @Expose
     val publishedAt: String,
@@ -68,7 +69,7 @@ data class Snippet(
     val channelId: String,
     @SerializedName("title")
     @Expose
-    val title: String,
+    val title:String,
     @SerializedName("description")
     @Expose
     val description: String,
@@ -81,6 +82,7 @@ data class Snippet(
     @SerializedName("channelTitle")
     @Expose
     val channelTitle: String,
+
 ) : Parcelable
 
 @Parcelize
@@ -112,6 +114,9 @@ data class YoutubeVideoInfo(
     @SerializedName("etag")
     @Expose
     val etag: String,
+    @SerializedName("title")
+    @Expose
+    val title:String,
     @SerializedName("items")
     @Expose
     val items: List<TrendItem>?
@@ -128,6 +133,7 @@ data class TrendItem(
     @SerializedName("id")
     @Expose
     val id: String,
+
 
     @SerializedName("snippet")
     @Expose
@@ -157,5 +163,37 @@ data class ContentDetails(
 data class Statistics(
     @SerializedName("viewCount")
     @Expose
-    val viewCount: String? = ""
+    val viewCount: String
 ) : Parcelable
+
+
+@Parcelize
+data class PlayList(
+
+    @SerializedName("kind")
+    @Expose
+    val kind: String,
+
+    @SerializedName("nextpageToken")
+    @Expose
+    val nextpageToken: String,
+
+    @SerializedName("regionCode")
+    @Expose
+    val regionCode: String,
+
+    @SerializedName("pageInfo")
+    @Expose
+    val pageInfo: PageInfo,
+    @SerializedName("items")
+    @Expose
+    val items: List<Items>?,
+    @SerializedName("snippet")
+    @Expose
+    val snippet: Snippet,
+
+
+
+
+
+):Parcelable

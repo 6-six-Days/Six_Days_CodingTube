@@ -26,7 +26,7 @@ class WordCategoryRecyclerViewAdapter(val Item:MutableList<Item>):RecyclerView.A
         position: Int
     ) {
         val pos=Item[position]
-        holder.wordCategoryImage.setImageResource(pos.dummy)
+
         Log.d(Tag,"WordCategotyRecyclerView Called")
     }
 
@@ -35,7 +35,7 @@ class WordCategoryRecyclerViewAdapter(val Item:MutableList<Item>):RecyclerView.A
     }
 
     inner class ViewHolder(binding: ActivityBestRecyclerViewBinding):RecyclerView.ViewHolder(binding.root) {
-        val wordCategoryImage=binding.dummy
+
     }
 
 }
