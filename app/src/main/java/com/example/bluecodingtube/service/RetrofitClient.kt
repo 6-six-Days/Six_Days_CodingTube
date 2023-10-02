@@ -1,12 +1,12 @@
 package com.example.bluecodingtube.service
 
+import android.app.Service
 import okhttp3.OkHttpClient
-import okhttp3.internal.platform.Platform
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
+
 
     private const val BASE_URL = "https://www.googleapis.com/youtube/v3/"
 
@@ -24,10 +24,9 @@ object RetrofitClient {
 
             .build()
     }
-    val search : YouTubeService by lazy {
+
+    val searchService: YouTubeService by lazy {
         retrofit.create(YouTubeService::class.java)
     }
-
-
 
 }
