@@ -86,6 +86,7 @@ import retrofit2.http.Query
         @SerializedName("channelTitle")
         @Expose
         val channelTitle: String,
+        val items: List<Items>?
     ) : Parcelable
 
     @Parcelize

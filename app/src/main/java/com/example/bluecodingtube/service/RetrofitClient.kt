@@ -25,8 +25,8 @@ object RetrofitClient {
             .build()
     }
 
-    val searchService: YouTubeService by lazy {
-        retrofit.create(YouTubeService::class.java)
+    val searchService: searchRequest by lazy {
+        retrofit.create(searchRequest::class.java)
     }
 
 }
