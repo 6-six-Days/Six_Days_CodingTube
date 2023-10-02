@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.bluecodingtube.data.Items
 import com.example.bluecodingtube.data.PlayList
 import com.example.bluecodingtube.databinding.ActivityBestRecyclerViewBinding
 import com.example.bluecodingtube.service.bestApi.VideoDiffUtill
@@ -19,12 +20,12 @@ class BestRecyclerViewAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
 
-    private var oldItems= emptyList<PlayList>()
+    private var oldItems= emptyList<Items>()
     class itemHolder(val binding: ActivityBestRecyclerViewBinding):RecyclerView.ViewHolder(binding.root){
 
 
 
-        fun setdata(data: PlayList){
+        fun setdata(data: Items){
             Log.d("respone","${data.toString()}")
             binding.title.text=data.snippet.title
             binding.id.text=data.snippet.channelId
@@ -50,7 +51,7 @@ class BestRecyclerViewAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return oldItems.size
     }
 
-    fun setData(newList: List<PlayList>?) {
+    fun setData(newList: List<Items>?) {
         if (newList != null) {
             val videoDiff = VideoDiffUtill(oldItems, newList)
             val diff = DiffUtil.calculateDiff(videoDiff)

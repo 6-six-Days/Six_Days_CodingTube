@@ -39,17 +39,12 @@ class HomePage : Fragment() {
         binding.BestRecyclerView.adapter=bestAdapter
         binding.BestRecyclerView.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         bestViewModel = ViewModelProvider(this).get(BestViewModel::class.java)
-        bestViewModel?.video?.observe(viewLifecycleOwner,{
+        bestViewModel?.video?.observe(viewLifecycleOwner) {
             if (it != null) {
-                val playlist = listOf(it)
-                bestAdapter.setData(playlist)
+                bestAdapter.setData(it.items)
 
             }
-        })
-
-
-
-
+        }
 
 
         val wordCategoryView = binding.worldcategoryRecyclerView

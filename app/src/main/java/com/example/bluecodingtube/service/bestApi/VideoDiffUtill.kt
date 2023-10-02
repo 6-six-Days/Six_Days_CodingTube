@@ -1,14 +1,15 @@
 package com.example.bluecodingtube.service.bestApi
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.bluecodingtube.data.Items
 import com.example.bluecodingtube.data.PlayList
 import com.example.bluecodingtube.data.Snippet
 import com.example.bluecodingtube.data.YoutubeVideo
 import com.example.bluecodingtube.data.YoutubeVideoInfo
 
 class VideoDiffUtill(
-    private val oldList:List<PlayList>,
-    private val newList:List<PlayList>
+    private val oldList:List<Items>,
+    private val newList:List<Items>
 ) :DiffUtil.Callback(){
 
     override fun getOldListSize(): Int {
