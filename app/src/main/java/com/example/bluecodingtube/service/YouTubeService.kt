@@ -21,13 +21,3 @@ interface YouTubeService {
 
 }
 
-interface BestVideo{
-    @GET("Video")
-    fun getVideo(
-        @Query("part") part: String,
-        @Query("channelId") channelId: String,
-        @Query("order") order:String
-
-
-    ):Call<YoutubeVideo>
-}

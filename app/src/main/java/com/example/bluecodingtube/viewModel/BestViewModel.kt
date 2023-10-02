@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.bluecodingtube.data.Items
 import com.example.bluecodingtube.data.PageInfo
 import com.example.bluecodingtube.data.PlayList
+import com.example.bluecodingtube.data.Snippet
 import com.example.bluecodingtube.data.YoutubeVideo
 import com.example.bluecodingtube.service.RetrofitClient
 import com.example.bluecodingtube.service.bestApi.ApiConfig
@@ -36,17 +37,17 @@ class BestViewModel():ViewModel() {
         getBest()
     }
     fun getBest() {
-        _isLoading.value = true
+        isLoading.value = true
         val client=ApiConfig.getService().searchVideos(keyword, part, maxResults, apiKey)
         client.enqueue(object : Callback<PlayList>{
             override fun onResponse(call: Call<PlayList>, response: Response<PlayList>) {
                 if (response.isSuccessful) {
                     val data = response.body()
-                    _video.value = data
+                    video.value = data
 
                 } else {
 
-                    _message.value = "Failed"
+                    message.value = "Failed"
                 }
 
             }

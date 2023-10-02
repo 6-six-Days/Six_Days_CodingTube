@@ -11,23 +11,25 @@
 
     <ImageView
         android:id="@+id/thumbnail"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="194dp"
+        android:layout_height="64dp"
         android:src="@drawable/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사용자명"
+        android:layout_marginStart="4dp"
 
+        android:text="사용자명"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/duration"

@@ -1,7 +1,6 @@
 package com.example.bluecodingtube
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bluecodingtube.adapter.BestRecyclerViewAdapter
 import com.example.bluecodingtube.adapter.CategoryRecyclerViewAdapter
 import com.example.bluecodingtube.adapter.WordCategoryRecyclerViewAdapter
-import com.example.bluecodingtube.data.YoutubeVideo
 import com.example.bluecodingtube.databinding.FragmentHomePageBinding
-import com.example.bluecodingtube.dataclass.Item
 import com.example.bluecodingtube.dataclass.dummydata
-import com.example.bluecodingtube.service.RetrofitClient
 import com.example.bluecodingtube.viewModel.BestViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class HomePage : Fragment() {
@@ -31,7 +24,7 @@ class HomePage : Fragment() {
     private lateinit var bestAdapter: BestRecyclerViewAdapter
     private lateinit var wordCategoryAdapter: WordCategoryRecyclerViewAdapter
     private lateinit var categoryAdapter: CategoryRecyclerViewAdapter
-    private lateinit var bestViewModel: BestViewModel
+    private var bestViewModel: BestViewModel? =null
 
 
 
@@ -48,11 +41,13 @@ class HomePage : Fragment() {
         bestViewModel = ViewModelProvider(this).get(BestViewModel::class.java)
         bestViewModel?.video?.observe(viewLifecycleOwner,{
             if (it != null) {
-                val playlist = listOf(it) // PlayList 객체를 리스트에 담음
+                val playlist = listOf(it)
                 bestAdapter.setData(playlist)
 
             }
         })
+
+
 
 
 
