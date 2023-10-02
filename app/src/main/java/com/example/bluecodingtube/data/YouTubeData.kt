@@ -6,9 +6,11 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import org.w3c.dom.Document
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 
-    @Parcelize
+@Parcelize
     data class YoutubeVideo(
         @SerializedName("kind")
         @Expose
@@ -28,9 +30,10 @@ import org.w3c.dom.Document
         @SerializedName("items")
         @Expose
         val items: List<Items>?
-    ) : Parcelable
+    ) : Parcelable {
+}
 
-    @Parcelize
+@Parcelize
     data class PageInfo(
         @SerializedName("totalResults")
         @Expose
@@ -92,7 +95,7 @@ import org.w3c.dom.Document
         val medium: Medium
     ) : Parcelable
 
-    @Parcelize
+@Parcelize
     data class Medium(
         @SerializedName("url")
         @Expose
