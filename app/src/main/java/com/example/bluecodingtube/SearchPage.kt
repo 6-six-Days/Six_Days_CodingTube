@@ -8,7 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.bluecodingtube.data.Snippet
+import com.example.bluecodingtube.adapter.SearchPageAdapter
+import com.example.bluecodingtube.data.YoutubeVideo
 import com.example.bluecodingtube.databinding.FragmentSearchPageBinding
 import com.example.bluecodingtube.dataclass.searchData
 import com.example.bluecodingtube.service.RetrofitClient
@@ -25,6 +26,8 @@ class SearchPage : Fragment() {
     private lateinit var adapter: SearchPageAdapter
 
     private var searchItem: ArrayList<searchData> = ArrayList()
+
+    private val query : String = ""
     override fun onAttach(context: Context) {
         super.onAttach(context)
         searchContext = context
@@ -63,44 +66,43 @@ class SearchPage : Fragment() {
             if (query.isNotEmpty()) {
                 Log.d("확인", "check")
                 CoroutineScope(Dispatchers.Main).launch {
-                    fetchYoutubeVideos(query)
+                    fetchYoutubeVideos()
                 }
             }
         }
     }
 
-    private fun fetchYoutubeVideos(query: String) {
+    private  fun fetchYoutubeVideos() {
 
         adapter.clearItem()
 
         val service = RetrofitClient.searchService
-        val apiKey = "AIzaSyBfaJPCzYR-ff1z4Xbx0lVGwoS6hpS2Sj8"
-        service.getYoutubeVideosSearch(apiKey, query, 1, 80)
-            .enqueue(object : retrofit2.Callback<Snippet> {
+
+        service.getYoutubeVideosSearch(query = query, maxResults = 10, videoOrder = "")
+            .enqueue(object : retrofit2.Callback<YoutubeVideo> {
                 override fun onResponse(
-                    call: Call<Snippet>,
-                    response: Response<Snippet>
+                    call: Call<YoutubeVideo>,
+                    response: Response<YoutubeVideo>
                 ) {
                     if (response.isSuccessful) {
                         val body = response.body()
-                        body?.items?.let { items ->
-                            val thumbnails = items.mapNotNull {
-                                it.snippet?.thumbnails?.medium?.url}
-                            val titles = items.mapNotNull {
-                                it.snippet?.title
-                            }
-                            searchItem.add(searchData(thumbnails,titles))
+                        body?.items?.forEach() { snippet ->
+                            val thumbnails = snippet.snippet.thumbnails.medium.url
+                            val titles = snippet.snippet.title
+                            searchItem.add(searchData(thumbnails, titles))
+                            Log.d("썸네일", "${thumbnails}")
+                            Log.d("타이틀", "${titles}")
                         }
 
-                        adapter.items = searchItem
-                        adapter.notifyDataSetChanged()
-
                     } else {
-                        Log.e("SearchPage", "API 요청이 실패했습니다.")
+                        Log.d("SearchPage", "API 요청 오류")
                     }
+
+                    adapter.items = searchItem
+                    adapter.notifyDataSetChanged()
                 }
 
-                override fun onFailure(call: Call<Snippet>, t: Throwable) {
+                override fun onFailure(call: Call<YoutubeVideo>, t: Throwable) {
                     Log.e("SearchPage", "API 요청 중 오류 발생", t)
                 }
             })
@@ -108,5 +110,9 @@ class SearchPage : Fragment() {
 
 
 }
+
+
+
+
 
 

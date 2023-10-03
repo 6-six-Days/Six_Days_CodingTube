@@ -1,6 +1,7 @@
 package com.example.bluecodingtube.service
 
 import android.app.Service
+import com.example.bluecodingtube.data.YoutubeVideo
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

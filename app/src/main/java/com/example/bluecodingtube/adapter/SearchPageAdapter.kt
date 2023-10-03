@@ -1,4 +1,4 @@
-package com.example.bluecodingtube
+package com.example.bluecodingtube.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.example.bluecodingtube.dataclass.searchData
 
 
 class SearchPageAdapter(private val searchContext: Context) :
-    RecyclerView.Adapter<SearchPageAdapter.searchItemViewHolder>() {
+    RecyclerView.Adapter<SearchPageAdapter.ItemViewHolder>() {
 
     var items = ArrayList<searchData>()
 
@@ -25,25 +25,25 @@ class SearchPageAdapter(private val searchContext: Context) :
 
     override fun getItemCount() = thumbnailUrls.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): searchItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = SearchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return searchItemViewHolder(binding)
+        return ItemViewHolder(binding)
     }
 
 
-    override fun onBindViewHolder(holder: searchItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
-        val imageitems = items[position]
+        val item = items[position]
 
         holder.title.text = titles[position]
 
         Glide.with(searchContext)
-            .load(imageitems.thumbNails)
+            .load(item.thumbNails)
             .into(holder.searchImage)
     }
 
 
-    inner class searchItemViewHolder(binding: SearchItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemViewHolder (binding: SearchItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val searchImage: ImageView = binding.searchImage
         val title: TextView = binding.searchTitle
     }
