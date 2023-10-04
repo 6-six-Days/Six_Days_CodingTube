@@ -2,6 +2,7 @@ package com.example.bluecodingtube.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.bluecodingtube.BuildConfig
 import com.example.bluecodingtube.data.PlayList
 import com.example.bluecodingtube.service.bestApi.ApiConfig
 import retrofit2.Call
@@ -21,7 +22,7 @@ class KCategoryViewModel:ViewModel() {
     val keyword = "Kotlin laungauge"
     val maxResults = 20
     val part = "snippet"
-    val apiKey = "AIzaSyABG7Q5R8daPBnggYQf1gKO6F965Opr80Y"
+    val apiKey = BuildConfig.YOUTUBE_API_KEY
     val order="viewCount"
 
 

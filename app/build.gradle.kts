@@ -22,7 +22,7 @@ android {
 
 
 
-        buildConfigField("String","YOUTUBE_API_KEY","\"AIzaSyDWsci-1uJ0aBaJXP-Y_rFowIlcUNhMHxI\"")
+        buildConfigField("String","YOUTUBE_API_KEY","\"AIzaSyABG7Q5R8daPBnggYQf1gKO6F965Opr80Y\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

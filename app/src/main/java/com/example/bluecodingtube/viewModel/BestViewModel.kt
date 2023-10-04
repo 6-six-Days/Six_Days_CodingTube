@@ -4,6 +4,7 @@ import android.os.Parcelable
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.bluecodingtube.BuildConfig
 import com.example.bluecodingtube.data.Items
 import com.example.bluecodingtube.data.PageInfo
 import com.example.bluecodingtube.data.PlayList
@@ -31,7 +32,7 @@ class BestViewModel():ViewModel() {
     val keyword = "programming"
     val maxResults = 20
     val part = "snippet"
-    val apiKey ="AIzaSyABG7Q5R8daPBnggYQf1gKO6F965Opr80Y"
+    val apiKey =BuildConfig.YOUTUBE_API_KEY
     val order= "viewCount"
 
     init{
