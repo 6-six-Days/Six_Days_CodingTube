@@ -5,9 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import org.w3c.dom.Document
-import retrofit2.http.GET
-import retrofit2.http.Query
+
 
 
 @Parcelize

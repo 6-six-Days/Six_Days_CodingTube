@@ -22,12 +22,13 @@ object RetrofitClient {
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
-
+            //.client(clientBuilder.build())
             .build()
+
     }
 
-    val searchService: searchRequest by lazy {
-        retrofit.create(searchRequest::class.java)
+    val searchService: YoutubeApiService by lazy {
+        retrofit.create(YoutubeApiService::class.java)
     }
 
 }

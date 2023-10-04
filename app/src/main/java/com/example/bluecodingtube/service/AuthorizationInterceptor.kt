@@ -13,7 +13,7 @@ class AuthorizationInterceptor : Interceptor {
                 chain.request().url.newBuilder()
                     .addQueryParameter(
                         "key",
-                        "AIzaSyBfaJPCzYR-ff1z4Xbx0lVGwoS6hpS2Sj8"
+                        SixDays.getApp().getString(R.string.YouTube_API_Key)
                     )
                     .build()
             )

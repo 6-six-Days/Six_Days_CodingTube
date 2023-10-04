@@ -13,6 +13,7 @@ import com.example.bluecodingtube.data.YoutubeVideo
 import com.example.bluecodingtube.databinding.FragmentSearchPageBinding
 import com.example.bluecodingtube.dataclass.searchData
 import com.example.bluecodingtube.service.RetrofitClient
+import com.example.bluecodingtube.service.api.SixDays
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -65,37 +66,38 @@ class SearchPage : Fragment() {
             val query = searchText.text.toString()
             if (query.isNotEmpty()) {
                 Log.d("확인", "check")
+
                 CoroutineScope(Dispatchers.Main).launch {
-                    fetchYoutubeVideos()
+                    fetchYoutubeVideos(query)
                 }
             }
         }
     }
 
-    private  fun fetchYoutubeVideos() {
+    private fun fetchYoutubeVideos(query: String) {
 
         adapter.clearItem()
 
         val service = RetrofitClient.searchService
-
-        service.getYoutubeVideosSearch(query = query, maxResults = 10, videoOrder = "")
+//query 비워짐, this.query 공백 데이터 로 받아옴,필수 요소 snippet 비워져 있음,(필수 요소 중요) 404 error 실패한 이유 확인 breakpoint ${response} -> 값이 잘려 있을 때 error log 로 변환 .~ (breakpoint 안찍어도 됨)
+        service.getYoutubeVideosSearch(apiKey = SixDays.getApp().getString(R.string.YouTube_API_Key),query = query, videoOrder = "date", maxResults = 10, channelId = "")
             .enqueue(object : retrofit2.Callback<YoutubeVideo> {
                 override fun onResponse(
-                    call: Call<YoutubeVideo>,
-                    response: Response<YoutubeVideo>
-                ) {
+                    call: Call<YoutubeVideo?>,
+                    response: Response<YoutubeVideo?>,
+                ){
                     if (response.isSuccessful) {
                         val body = response.body()
-                        body?.items?.forEach() { snippet ->
-                            val thumbnails = snippet.snippet.thumbnails.medium.url
-                            val titles = snippet.snippet.title
+                        body?.items?.forEach() { item ->
+                            val thumbnails = item.snippet.thumbnails.medium.url
+                            val titles = item.snippet.title
                             searchItem.add(searchData(thumbnails, titles))
                             Log.d("썸네일", "${thumbnails}")
                             Log.d("타이틀", "${titles}")
                         }
 
                     } else {
-                        Log.d("SearchPage", "API 요청 오류")
+                        Log.e("SearchPage", "API 요청 오류 ${response.errorBody()}" ) // error log 는 e
                     }
 
                     adapter.items = searchItem
