@@ -28,7 +28,6 @@ class SearchPage : Fragment() {
 
     private var searchItem: ArrayList<searchData> = ArrayList()
 
-    private val query : String = ""
     override fun onAttach(context: Context) {
         super.onAttach(context)
         searchContext = context
