@@ -14,6 +14,10 @@ import com.example.bluecodingtube.viewModel.SearchItemModel
 class MyPageAdapter(var mContext: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items = mutableListOf<SearchItemModel>()
+    fun addItem(item: SearchItemModel) {
+        items.add(item)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = SearchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -9,7 +9,10 @@ import com.bumptech.glide.Glide
 import com.example.bluecodingtube.databinding.ActivityDetailpageBinding
 import com.example.bluecodingtube.dataclass.searchData
 
+
 class DetailpageActivity : AppCompatActivity() {
+
+
 
     val binding by lazy { ActivityDetailpageBinding.inflate(layoutInflater) }
     var items = ArrayList<searchData>()
@@ -19,7 +22,7 @@ class DetailpageActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        var testList = intent.getParcelableExtra<searchData>("Data") // parcelable 데이터를 받아올때 사용하는 함수
+        var testList = intent.getParcelableExtra<searchData?>("Data") // parcelable 데이터를 받아올때 사용하는 함수
         Log.d("recievedata","gotodetail")
         //Glide를 사용하여 이미지뷰에 받아온 썸네일URI연결
         testList?.thumbNails.let { imageUrI ->
@@ -33,7 +36,8 @@ class DetailpageActivity : AppCompatActivity() {
         //좋아요 클릭시 Myapge로 이동됨
         binding.apply {
             button.setOnClickListener {
-                setFragment(MyPage())
+                val myPageFragment = supportFragmentManager.findFragmentByTag("MyPage") as MyPage?
+                myPageFragment?.addItemToAdapter(testList)
                 Log.d("Click btn_like","gogogogogogogo")
             }
         }

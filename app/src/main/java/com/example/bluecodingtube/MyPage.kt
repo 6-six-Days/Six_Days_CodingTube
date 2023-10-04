@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.bluecodingtube.adapter.MyPageAdapter
 import com.example.bluecodingtube.databinding.FragmentMyPageBinding
-
+import com.example.bluecodingtube.dataclass.searchData
 
 
 class MyPage : Fragment() {
@@ -27,11 +27,8 @@ class MyPage : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val mainActivity = activity as MainActivity
-//        likedItem = mainActivity.likedItems
 
         adapter = MyPageAdapter(mContext).apply {
-//            items = likedItem.toMutableList()
         }
         binding = FragmentMyPageBinding.inflate(inflater, container, false).apply {
             rvMyPage.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -44,5 +41,10 @@ class MyPage : Fragment() {
         super.onDestroyView()
         binding = null
     }
+    fun addItemToAdapter(item: searchData?) {
+        item?.let {
+            adapter.addItem(it.toSearchItemModel())
+        }
+}
 }
 
