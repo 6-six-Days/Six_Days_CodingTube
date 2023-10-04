@@ -28,10 +28,10 @@ class MyPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val mainActivity = activity as MainActivity
-//        likedItem = mainActivity.likedItems
+        likedItem = mainActivity.likedItems
 
         adapter = MyPageAdapter(mContext).apply {
-//            items = likedItem.toMutableList()
+            items = likedItem.toMutableList()
         }
         binding = FragmentMyPageBinding.inflate(inflater, container, false).apply {
             rvMyPage.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)

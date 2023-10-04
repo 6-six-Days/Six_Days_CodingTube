@@ -115,6 +115,8 @@ dependencies {
 
     implementation ("com.localebro:okhttpprofiler:1.0.8")
 
+    implementation ("com.squareup.okhttp3:logging-interceptor:3.12.1")
+
     //Circle
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
