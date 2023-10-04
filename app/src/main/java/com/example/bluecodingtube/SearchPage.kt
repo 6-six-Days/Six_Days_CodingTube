@@ -2,93 +2,118 @@ package com.example.bluecodingtube
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.bluecodingtube.adapter.SearchPageAdapter
-import com.example.bluecodingtube.adapter.searchData
+import com.example.bluecodingtube.data.YoutubeVideo
 import com.example.bluecodingtube.databinding.FragmentSearchPageBinding
-
+import com.example.bluecodingtube.dataclass.searchData
+import com.example.bluecodingtube.service.RetrofitClient
+import com.example.bluecodingtube.service.api.SixDays
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Response
 
 class SearchPage : Fragment() {
 
     private lateinit var binding: FragmentSearchPageBinding
-    private lateinit var SearchContext : Context
+    private lateinit var searchContext: Context
     private lateinit var adapter: SearchPageAdapter
 
-    private var searchItem : ArrayList<searchData> = ArrayList()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        adapter = SearchPageAdapter(generateDummyData())
-        binding.searchRecycleView.adapter = adapter
-    }
-
+    private var searchItem: ArrayList<searchData> = ArrayList()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        SearchContext = context
+        searchContext = context
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
-        ): View? {
-         binding = FragmentSearchPageBinding.inflate(inflater, container, false)
-
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentSearchPageBinding.inflate(inflater, container, false)
         setupView()
-       // setupListener()
-
+        setupListener()
         return binding.root
     }
 
-    private fun setupView(){
-
+    private fun setupView() {
         val spanCount = 2
-        val grid = GridLayoutManager(SearchContext,spanCount)
-
+        val grid = GridLayoutManager(searchContext, spanCount)
         binding.searchRecycleView.layoutManager = grid
-
-
         binding.searchRecycleView.itemAnimator = null
 
-    }
-
-    // 데이터 값 실험
-    private fun generateDummyData(): List<searchData> {
-        val dummyData = mutableListOf<searchData>()
-        for (i in 1..20) {
-            val imageResourceId = when (i) {
-                1 -> R.drawable.search_pic_item
-                2 -> R.drawable.search_pic_item
-
-                else -> R.drawable.search_pic_item // 기본 이미지 리소스 ID를 설정
-            }
-            val searchData = searchData(imageResourceId, "Love lee")
-            dummyData.add(searchData)
-        }
-        return dummyData
+        adapter = SearchPageAdapter(searchContext)
+        binding.searchRecycleView.adapter = adapter
     }
 
 
-    /* 검색
-    private fun setupListener(){
+
+
+    private fun setupListener() {
         val searchText = binding.searchtext
         val searchButton = binding.searchbutton
 
-        searchButton.setOnClickListener{
+        searchButton.setOnClickListener {
             val query = searchText.text.toString()
-            if(query.isNotEmpty()){
+            if (query.isNotEmpty()) {
+                Log.d("확인", "check")
 
+                CoroutineScope(Dispatchers.Main).launch {
+                    fetchYoutubeVideos(query)
+                }
             }
         }
     }
-*/
+
+    private fun fetchYoutubeVideos(query: String) {
+
+        adapter.clear()
+
+        val service = RetrofitClient.searchService
+//query 비워짐, this.query 공백 데이터 로 받아옴,필수 요소 snippet 비워져 있음,(필수 요소 중요) 404 error 실패한 이유 확인 breakpoint ${response} -> 값이 잘려 있을 때 error log 로 변환 .~ (breakpoint 안찍어도 됨)
+        service.getYoutubeVideosSearch(apiKey = SixDays.getApp().getString(R.string.YouTube_API_Key),query = query, videoOrder = "date", maxResults = 10, channelId = "")
+            .enqueue(object : retrofit2.Callback<YoutubeVideo> {
+                override fun onResponse(
+                    call: Call<YoutubeVideo?>,
+                    response: Response<YoutubeVideo?>,
+                ){
+                    if (response.isSuccessful) {
+                        val body = response.body()
+                        body?.items?.forEach() { item ->
+                            val thumbnails = item.snippet.thumbnails.medium.url
+                            val titles = item.snippet.title
+                            searchItem.add(searchData(thumbnails, titles))
+                            Log.d("썸네일", "${thumbnails}")
+                            Log.d("타이틀", "${titles}")
+                        }
+
+                    } else {
+                        Log.e("SearchPage", "API 요청 오류 ${response.errorBody()}" ) // error log 는 e
+                    }
+
+                    adapter.items = searchItem
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onFailure(call: Call<YoutubeVideo>, t: Throwable) {
+                    Log.e("SearchPage", "API 요청 중 오류 발생", t)
+                }
+            })
+    }
+
+
 }
+
+
+
+
+
+

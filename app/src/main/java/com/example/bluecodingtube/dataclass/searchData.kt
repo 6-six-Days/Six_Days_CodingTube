@@ -1,4 +1,4 @@
-package com.example.bluecodingtube.adapter
+package com.example.bluecodingtube.dataclass
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
