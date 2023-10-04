@@ -16,35 +16,33 @@ class SearchPageAdapter(private val searchContext: Context) :
 
     var items = ArrayList<searchData>()
 
-    private var thumbnailUrls = ArrayList<String>()
-    private var titles = ArrayList<String>()
-
-   fun clearItem(){
-        items.clear()
-    }
-
-    override fun getItemCount() = thumbnailUrls.size
+    override fun getItemCount() = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = SearchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-
         val item = items[position]
 
-        holder.title.text = titles[position]
+        holder.title.text = item.title
 
         Glide.with(searchContext)
             .load(item.thumbNails)
             .into(holder.searchImage)
     }
 
+    fun clear() {
+        items.clear()
+        notifyDataSetChanged()
+    }
 
-    inner class ItemViewHolder (binding: SearchItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemViewHolder(binding: SearchItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val searchImage: ImageView = binding.searchImage
         val title: TextView = binding.searchTitle
     }
 }
+
+
+

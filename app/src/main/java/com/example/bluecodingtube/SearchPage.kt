@@ -76,7 +76,7 @@ class SearchPage : Fragment() {
 
     private fun fetchYoutubeVideos(query: String) {
 
-        adapter.clearItem()
+        adapter.clear()
 
         val service = RetrofitClient.searchService
 //query 비워짐, this.query 공백 데이터 로 받아옴,필수 요소 snippet 비워져 있음,(필수 요소 중요) 404 error 실패한 이유 확인 breakpoint ${response} -> 값이 잘려 있을 때 error log 로 변환 .~ (breakpoint 안찍어도 됨)
