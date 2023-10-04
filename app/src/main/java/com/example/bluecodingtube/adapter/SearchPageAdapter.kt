@@ -42,15 +42,22 @@ class SearchPageAdapter(private val searchContext: List<searchData>) : RecyclerV
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         val searchImage: ImageView = binding.searchImage
         val title: TextView = binding.searchTitle
+        init{
+            itemView.setOnClickListener(this)// 뷰가 클릭되었을 때 이 클래스의 onClick 메서드가 호출되도록 설정
+        }
+
 
         override fun onClick(view: View?) {
             val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION } ?: return
             val clickedItem = items[position] // 클릭된 위치에 해당하는 데이터 항목 가져오기
 
+
+
+
             //리싸이클러뷰중 선택된 항목의 데이터를 가지고 intent 날리기, DetailActivity 호출
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailpageActivity::class.java)
-                intent.putExtra("Data", searchData[adapterPosition])
+                intent.putExtra("Data", clickedItem)
                 itemView.context.startActivity(intent)
             }
 
