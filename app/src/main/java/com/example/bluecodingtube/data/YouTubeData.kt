@@ -134,10 +134,6 @@ data class Snippet(
         @Expose
         val snippet: Snippet,
 
-    @SerializedName("snippet")
-    @Expose
-    val snippet: Snippet,
-
         @SerializedName("tags")
         @Expose
         val tags: List<String>,
@@ -164,15 +160,6 @@ data class Snippet(
         @Expose
         val viewCount: String? = ""
     ) : Parcelable
-
-
-@Parcelize
-data class Statistics(
-    @SerializedName("viewCount")
-    @Expose
-    val viewCount: String
-) : Parcelable
-
 
 @Parcelize
 data class PlayList(

@@ -1,4 +1,7 @@
 package com.example.bluecodingtube.dataclass
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class searchData(val thumbNails: String, val title: String)
+@Parcelize
+data class searchData(val thumbNails: String, val title: String) : Parcelable

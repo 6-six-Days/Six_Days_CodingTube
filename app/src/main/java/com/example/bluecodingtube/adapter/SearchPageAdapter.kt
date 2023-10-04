@@ -12,11 +12,10 @@ import com.bumptech.glide.Glide
 import com.example.bluecodingtube.DetailpageActivity
 import com.example.bluecodingtube.databinding.SearchItemBinding
 import com.example.bluecodingtube.dataclass.searchData
-import com.example.bluecodingtube.service.YouTubeService
 
-class SearchPageAdapter(private val searchContext: List<searchData>) : RecyclerView.Adapter<SearchPageAdapter.searchItemViewHolder>(){
+class SearchPageAdapter(private val searchContext: Context) : RecyclerView.Adapter<SearchPageAdapter.ItemViewHolder>() {
 
-    val items = ArrayList<searchData>()
+    var items = ArrayList<searchData>()
 
     override fun getItemCount() = items.size
 
@@ -39,11 +38,12 @@ class SearchPageAdapter(private val searchContext: List<searchData>) : RecyclerV
         notifyDataSetChanged()
     }
 
-    inner class searchItemViewHolder(binding: SearchItemBinding) :
+    inner class ItemViewHolder(binding: SearchItemBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         val searchImage: ImageView = binding.searchImage
         val title: TextView = binding.searchTitle
-        init{
+
+        init {
             itemView.setOnClickListener(this)// 뷰가 클릭되었을 때 이 클래스의 onClick 메서드가 호출되도록 설정
         }
 
@@ -53,8 +53,6 @@ class SearchPageAdapter(private val searchContext: List<searchData>) : RecyclerV
             val clickedItem = items[position] // 클릭된 위치에 해당하는 데이터 항목 가져오기
 
 
-
-
             //리싸이클러뷰중 선택된 항목의 데이터를 가지고 intent 날리기, DetailActivity 호출
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailpageActivity::class.java)
@@ -62,4 +60,6 @@ class SearchPageAdapter(private val searchContext: List<searchData>) : RecyclerV
                 itemView.context.startActivity(intent)
             }
 
+        }
+    }
 }
