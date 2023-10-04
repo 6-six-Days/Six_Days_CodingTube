@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".service.api.SixDays"
@@ -16,10 +16,13 @@
         android:theme="@style/Theme.BlueCodingTube"
         tools:targetApi="31">
         <activity
+            android:name=".TodayYoutuber"
+            android:exported="false" />
+        <activity
             android:name=".Splash"
             android:exported="false" />
         <activity
-            android:name=".Category_Recycler_View"
+            android:name=".Music_Recycler_View"
             android:exported="false" />
         <activity
             android:name=".Word_Category_Recycler_View"
@@ -39,5 +42,3 @@
     </application>
 
 </manifest>
-
-

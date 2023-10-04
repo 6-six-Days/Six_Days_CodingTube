@@ -28,17 +28,18 @@ class BestViewModel():ViewModel() {
     private val _message = MutableLiveData<String>()
     val message = _message
 
-    val keyword = "coding"
+    val keyword = "programming"
     val maxResults = 20
     val part = "snippet"
-    val apiKey = "AIzaSyDWsci-1uJ0aBaJXP-Y_rFowIlcUNhMHxI"
+    val apiKey ="AIzaSyABG7Q5R8daPBnggYQf1gKO6F965Opr80Y"
+    val order= "viewCount"
 
     init{
         getBest()
     }
     fun getBest() {
         isLoading.value = true
-        val client=ApiConfig.getService().searchVideos(keyword, part, maxResults, apiKey)
+        val client=ApiConfig.getService().searchVideos(keyword, part, maxResults, apiKey, order)
         client.enqueue(object : Callback<PlayList>{
             override fun onResponse(call: Call<PlayList>, response: Response<PlayList>) {
                 if (response.isSuccessful) {

@@ -11,6 +11,8 @@ interface ApiService2 {
         @Query("q") keyword: String,
         @Query("part") part: String = "snippet",
         @Query("maxResults") maxResults: Int = 20,
-        @Query("key") apiKey: String
+        @Query("key") apiKey: String="AIzaSyA_lmB1mbVwP59a7hVV1NtQGZtRnATlIuo",
+        @Query("order") order: String
+
     ): Call<PlayList>
 }

@@ -24,12 +24,6 @@ class ApiConfig {
                         .request()
                         .url
                         .newBuilder()
-                        .addQueryParameter("part", "snippet")
-                        .addQueryParameter("maxResults", "20")
-                        .addQueryParameter("q", "cording")
-                        .addQueryParameter("key", "AIzaSyDWsci-1uJ0aBaJXP-Y_rFowIlcUNhMHxI")
-                        .addQueryParameter("order", "viewCount")
-                        .addQueryParameter("type", "video")
                         .build()
                     chain.proceed(chain.request().newBuilder().url(url).build())
                 }

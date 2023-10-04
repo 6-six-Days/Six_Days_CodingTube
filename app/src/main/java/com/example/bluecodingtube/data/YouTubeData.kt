@@ -195,5 +195,35 @@ data class PlayList(
 
 
 
-
 ):Parcelable
+
+@Parcelize
+data class PlayList2(
+
+    @SerializedName("kind")
+    @Expose
+    val kind: String,
+
+    @SerializedName("nextpageToken")
+    @Expose
+    val nextpageToken: String,
+
+    @SerializedName("regionCode")
+    @Expose
+    val regionCode: String,
+
+    @SerializedName("pageInfo")
+    @Expose
+    val pageInfo: PageInfo,
+    @SerializedName("items")
+    @Expose
+    val items: List<Items>?,
+    @SerializedName("snippet")
+    @Expose
+    val snippet: Snippet,
+
+
+
+
+
+    ):Parcelable
