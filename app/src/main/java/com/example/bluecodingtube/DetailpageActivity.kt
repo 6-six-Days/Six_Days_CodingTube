@@ -2,8 +2,8 @@ package com.example.bluecodingtube
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.bluecodingtube.adapter.searchData
 import com.example.bluecodingtube.databinding.ActivityDetailpageBinding
+import com.example.bluecodingtube.dataclass.searchData
 
 class DetailpageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailpageBinding
