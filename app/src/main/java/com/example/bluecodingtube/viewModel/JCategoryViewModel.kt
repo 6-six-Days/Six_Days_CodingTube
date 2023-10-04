@@ -25,7 +25,7 @@ class JCategoryViewModel: ViewModel() {
     val maxResults = 20
     val part = "snippet"
     val apiKey = BuildConfig.YOUTUBE_API_KEY
-    val order="viewCount"
+    val order="relevance"
 
 
     init{

@@ -21,7 +21,7 @@ class MusicViewModel: ViewModel() {
     val keyword = "Coding Music"
     val maxResults = 20
     val part = "snippet"
-    val order="viewCount"
+    val order="relevance"
     val apiKey = BuildConfig.YOUTUBE_API_KEY
 
 
