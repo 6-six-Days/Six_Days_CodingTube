@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.bluecodingtube.adapter.SearchPageAdapter
@@ -19,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
+
 
 class SearchPage : Fragment() {
 
@@ -71,6 +74,11 @@ class SearchPage : Fragment() {
                 }
             }
         }
+
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.searchtext.windowToken, 0)
+
+
     }
 
     private fun fetchYoutubeVideos(query: String) {
@@ -79,7 +87,7 @@ class SearchPage : Fragment() {
 
         val service = RetrofitClient.searchService
 //query 비워짐, this.query 공백 데이터 로 받아옴,필수 요소 snippet 비워져 있음,(필수 요소 중요) 404 error 실패한 이유 확인 breakpoint ${response} -> 값이 잘려 있을 때 error log 로 변환 .~ (breakpoint 안찍어도 됨)
-        service.getYoutubeVideosSearch(apiKey = SixDays.getApp().getString(R.string.YouTube_API_Key),query = query, videoOrder = "date", maxResults = 10, channelId = "")
+        service.getYoutubeVideosSearch(apiKey = SixDays.getApp().getString(R.string.YouTube_API_Key),query = query, videoOrder = "date", maxResults = 50, channelId = "")
             .enqueue(object : retrofit2.Callback<YoutubeVideo> {
                 override fun onResponse(
                     call: Call<YoutubeVideo?>,

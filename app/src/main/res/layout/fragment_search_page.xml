@@ -26,7 +26,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/select"
-                android:text="keyword 1 "
+                android:text="kotlin"
                 android:textSize="12sp" />
 
             <Button
@@ -36,7 +36,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/select"
-                android:text="keyword2"
+                android:text="Android"
                 android:textSize="12sp" />
 
             <Button
@@ -46,7 +46,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/select"
-                android:text="keyword3"
+                android:text="Git"
                 android:textSize="12sp" />
 
         </LinearLayout>
