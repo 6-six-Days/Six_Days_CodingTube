@@ -53,7 +53,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/Layout_thum"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -85,11 +85,12 @@
         android:layout_marginTop="73dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/round_button"
+        android:backgroundTint="@color/backgruond_blue"
         android:text="좋아요"
         android:textSize="8sp"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/Layout_thum" />
 
     <Button
         android:id="@+id/button2"
@@ -98,28 +99,28 @@
         android:layout_marginTop="73dp"
         android:layout_marginEnd="133dp"
         android:background="@drawable/round_button"
+        android:backgroundTint="@color/backgruond_blue"
         android:text="구독"
         android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/Layout_thum" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_detail_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="148dp"
-        android:layout_marginEnd="322dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="8dp"
         android:hint="Cotube channel name"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintBottom_toTopOf="@+id/tv_detail_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_detail_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
@@ -130,7 +131,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_title" />
 
     <TextView
         android:id="@+id/textView3"
@@ -143,6 +144,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
