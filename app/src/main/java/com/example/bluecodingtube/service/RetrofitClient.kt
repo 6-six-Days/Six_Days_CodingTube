@@ -8,6 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
+
+
     private const val BASE_URL = "https://www.googleapis.com/youtube/v3/"
 
     private val okHttpClient by lazy {
@@ -21,6 +23,7 @@ object RetrofitClient {
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
+            //제이슨은 코틀린으로 변환
 
             .build()
     }
@@ -28,6 +31,7 @@ object RetrofitClient {
         retrofit.create(YouTubeService::class.java)
     }
 
+    
 
 
 }

@@ -6,7 +6,9 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp"
-    tools:context=".Word_Category_Recycler_View">
+    tools:context=".Music_Recycler_View">
+
+
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="182dp"

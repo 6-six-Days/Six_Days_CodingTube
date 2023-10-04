@@ -5,11 +5,12 @@ import com.example.bluecodingtube.data.YoutubeVideo
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.time.Duration
 
 interface YouTubeService {
     @GET("search")
-    suspend fun getYouTubeVideos(
-        @Query("key") apiKey: String,
+     fun getYouTubeVideos(
+        @Query("key") apiKey: String="AIzaSyABG7Q5R8daPBnggYQf1gKO6F965Opr80Y",
         @Query("q") query: String,
         @Query("order") videoOrder: String,
         @Query("type") videoType: String = "video",
@@ -17,4 +18,6 @@ interface YouTubeService {
         @Query("channelId") channelId: String = "",
         @Query("part") part: String = "snippet",
     ): Call<YoutubeVideo>
+
 }
+

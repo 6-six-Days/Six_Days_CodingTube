@@ -20,6 +20,10 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
+
+        buildConfigField("String","YOUTUBE_API_KEY","\"AIzaSyABG7Q5R8daPBnggYQf1gKO6F965Opr80Y\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -41,7 +45,9 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
+
     packagingOptions {
         exclude("META-INF/DEPENDENCIES")
         exclude("META-INF/LICENSE")
@@ -69,10 +75,19 @@ dependencies {
     // viewPager2
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
+    implementation("androidx.fragment:fragment-ktx:1.4.1")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+
     // api 통신
     implementation ("com.google.api-client:google-api-client:1.32.1")
     implementation ("com.google.oauth-client:google-oauth-client-jetty:1.23.0")
-//implementation 'com.google.http-client:google-http-client-jackson2:1.39.2'
+    implementation ("com.google.apis:google-api-services-youtube:v3-rev183-1.22.0")
+    implementation ("com.google.http-client:google-http-client-android:1.38.1")
+    implementation ("com.google.api-client:google-api-client-android:1.31.2")
+    implementation ("com.google.api-client:google-api-client-gson:1.31.2")
+
 
     implementation ("com.google.apis:google-api-services-youtubeAnalytics:v2-rev16-1.23.0")
     implementation ("com.google.apis:google-api-services-youtube:v3-rev20210915-1.32.1")
@@ -85,6 +100,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     // okhttp3
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
 
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
