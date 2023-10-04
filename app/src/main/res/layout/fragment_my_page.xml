@@ -40,7 +40,7 @@
         android:id="@+id/circle_iv"
         android:layout_width="97dp"
         android:layout_height="106dp"
-        android:src="@tools:sample/avatars"
+        android:src="@drawable/happydog2"
         app:civ_border_color="#000000"
         app:civ_border_overlay="true"
         app:civ_border_width="5dp"

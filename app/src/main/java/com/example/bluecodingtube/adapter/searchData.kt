@@ -1,3 +1,10 @@
 package com.example.bluecodingtube.adapter
 
-data class searchData(val imageResourceId : Int,val title : String)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class searchData(
+    val imageResourceId : Int,
+    val title : String
+) :Parcelable
