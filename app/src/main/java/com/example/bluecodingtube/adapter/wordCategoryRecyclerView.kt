@@ -23,9 +23,11 @@ class wordCategoryRecyclerView :RecyclerView.Adapter<RecyclerView.ViewHolder>() 
 
         fun setdata(data: Items){
             Log.d("please","${data.toString()}")
+            val publishedAt = data.snippet.publishedAt
+            val datePart = publishedAt.substring(0, 10)
             binding.title.text=data.snippet.title
             binding.id.text=data.snippet.channelTitle
-            binding.viewCount.text=data.snippet.publishedAt
+            binding.viewCount.text=datePart
             Glide.with(binding.root).load(data.snippet.thumbnails.medium.url)
                 .into(binding.thumbnail)
 

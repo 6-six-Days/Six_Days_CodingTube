@@ -21,7 +21,7 @@ class PCategoryViewModel:ViewModel() {
     val keyword = "PYTHON laungauge"
     val maxResults = 20
     val part = "snippet"
-    val order="viewCount"
+    val order="relevance"
     val apiKey = BuildConfig.YOUTUBE_API_KEY
 
 

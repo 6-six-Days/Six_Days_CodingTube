@@ -12,6 +12,7 @@ import com.example.bluecodingtube.databinding.ActivityBestRecyclerViewBinding
 import com.example.bluecodingtube.service.bestApi.VideoDiffUtill
 import com.example.bluecodingtube.viewModel.BestViewModel
 import io.opencensus.tags.Tag
+import java.util.regex.Pattern
 
 
 class BestRecyclerViewAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -27,9 +28,13 @@ class BestRecyclerViewAdapter :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun setdata(data: Items){
             Log.d("respone","${data.toString()}")
+            val publishedAt = data.snippet.publishedAt
+            val datePart = publishedAt.substring(0, 10)
             binding.title.text=data.snippet.title
             binding.id.text=data.snippet.channelTitle
-            binding.viewCount.text=data.snippet.publishedAt
+            binding.viewCount.text=datePart
+
+
             Glide.with(binding.root).load(data.snippet.thumbnails.medium.url)
                 .into(binding.thumbnail)
 

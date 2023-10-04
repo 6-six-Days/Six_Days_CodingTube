@@ -82,7 +82,7 @@ data class Snippet(
     @SerializedName("channelTitle")
     @Expose
     val channelTitle: String,
-) : Parcelable
+    ) : Parcelable
 
     @Parcelize
     data class ThumbNail(
@@ -189,7 +189,7 @@ data class PlayList(
 
 
 
-):Parcelable
+    ):Parcelable
 
 @Parcelize
 data class PlayList2(
