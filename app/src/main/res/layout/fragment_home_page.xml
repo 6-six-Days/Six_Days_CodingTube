@@ -15,7 +15,7 @@
         <!-- 인기 동영상 -->
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_detail_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -37,7 +37,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_date" />
 
         <!-- 오늘의 코딩 유튜버 -->
 
