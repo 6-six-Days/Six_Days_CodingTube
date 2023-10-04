@@ -1,4 +1,4 @@
-package com.example.codingtube.adapter
+package com.example.bluecodingtube.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
