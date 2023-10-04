@@ -46,7 +46,8 @@ import kotlinx.android.parcel.Parcelize
         val id: Id,
         @SerializedName("snippet")
         @Expose
-        val snippet: Snippet
+        val snippet: Snippet,
+
     ) : Parcelable
 
     @Parcelize

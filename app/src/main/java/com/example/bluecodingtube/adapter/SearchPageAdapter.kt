@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.bluecodingtube.DetailpageActivity
 import com.example.bluecodingtube.databinding.SearchItemBinding
 import com.example.bluecodingtube.dataclass.searchData
+import com.example.bluecodingtube.service.YouTubeService
 
 class SearchPageAdapter(private val searchContext: Context) : RecyclerView.Adapter<SearchPageAdapter.ItemViewHolder>() {
 
@@ -51,6 +52,8 @@ class SearchPageAdapter(private val searchContext: Context) : RecyclerView.Adapt
         override fun onClick(view: View?) {
             val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION } ?: return
             val clickedItem = items[position] // 클릭된 위치에 해당하는 데이터 항목 가져오기
+
+
 
 
             //리싸이클러뷰중 선택된 항목의 데이터를 가지고 intent 날리기, DetailActivity 호출

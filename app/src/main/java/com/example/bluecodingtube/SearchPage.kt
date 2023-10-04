@@ -90,9 +90,14 @@ class SearchPage : Fragment() {
                         body?.items?.forEach() { item ->
                             val thumbnails = item.snippet.thumbnails.medium.url
                             val titles = item.snippet.title
-                            searchItem.add(searchData(thumbnails, titles))
+                            val info = item.snippet.description
+                            val date = item.snippet.publishTime
+
+                            searchItem.add(searchData(thumbnails, titles,info,date))
                             Log.d("썸네일", "${thumbnails}")
                             Log.d("타이틀", "${titles}")
+                            Log.d("설명", "${info}")
+                            Log.d("날짜", "${date}")
                         }
 
                     } else {
@@ -111,6 +116,8 @@ class SearchPage : Fragment() {
 
 
 }
+
+// +) 키보드 숨기기
 
 
 
