@@ -6,8 +6,6 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-
-
 @Parcelize
     data class YoutubeVideo(
         @SerializedName("kind")
@@ -61,31 +59,30 @@ import kotlinx.android.parcel.Parcelize
         val videoId: String
     ) : Parcelable
 
-    @Parcelize
-    data class Snippet(
-        @SerializedName("publishedAt")
-        @Expose
-        val publishedAt: String,
-        @SerializedName("channelId")
-        @Expose
-        val channelId: String,
-        @SerializedName("title")
-        @Expose
-        val title: String,
-        @SerializedName("description")
-        @Expose
-        val description: String,
-        @SerializedName("thumbnails")
-        @Expose
-        val thumbnails: ThumbNail,
-        @SerializedName("publishTime")
-        @Expose
-        val publishTime: String,
-        @SerializedName("channelTitle")
-        @Expose
-        val channelTitle: String,
-
-    ) : Parcelable
+@Parcelize
+data class Snippet(
+    @SerializedName("publishedAt")
+    @Expose
+    val publishedAt: String,
+    @SerializedName("channelId")
+    @Expose
+    val channelId: String,
+    @SerializedName("title")
+    @Expose
+    val title: String,
+    @SerializedName("description")
+    @Expose
+    val description: String,
+    @SerializedName("thumbnails")
+    @Expose
+    val thumbnails: ThumbNail,
+    @SerializedName("publishTime")
+    @Expose
+    val publishTime: String,
+    @SerializedName("channelTitle")
+    @Expose
+    val channelTitle: String,
+) : Parcelable
 
     @Parcelize
     data class ThumbNail(
@@ -137,6 +134,10 @@ import kotlinx.android.parcel.Parcelize
         @Expose
         val snippet: Snippet,
 
+    @SerializedName("snippet")
+    @Expose
+    val snippet: Snippet,
+
         @SerializedName("tags")
         @Expose
         val tags: List<String>,
@@ -164,3 +165,72 @@ import kotlinx.android.parcel.Parcelize
         val viewCount: String? = ""
     ) : Parcelable
 
+
+@Parcelize
+data class Statistics(
+    @SerializedName("viewCount")
+    @Expose
+    val viewCount: String
+) : Parcelable
+
+
+@Parcelize
+data class PlayList(
+
+    @SerializedName("kind")
+    @Expose
+    val kind: String,
+
+    @SerializedName("nextpageToken")
+    @Expose
+    val nextpageToken: String,
+
+    @SerializedName("regionCode")
+    @Expose
+    val regionCode: String,
+
+    @SerializedName("pageInfo")
+    @Expose
+    val pageInfo: PageInfo,
+    @SerializedName("items")
+    @Expose
+    val items: List<Items>?,
+    @SerializedName("snippet")
+    @Expose
+    val snippet: Snippet,
+
+
+
+
+):Parcelable
+
+@Parcelize
+data class PlayList2(
+
+    @SerializedName("kind")
+    @Expose
+    val kind: String,
+
+    @SerializedName("nextpageToken")
+    @Expose
+    val nextpageToken: String,
+
+    @SerializedName("regionCode")
+    @Expose
+    val regionCode: String,
+
+    @SerializedName("pageInfo")
+    @Expose
+    val pageInfo: PageInfo,
+    @SerializedName("items")
+    @Expose
+    val items: List<Items>?,
+    @SerializedName("snippet")
+    @Expose
+    val snippet: Snippet,
+
+
+
+
+
+    ):Parcelable

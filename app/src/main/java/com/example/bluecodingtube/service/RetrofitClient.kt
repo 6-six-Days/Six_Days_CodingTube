@@ -3,11 +3,12 @@ package com.example.bluecodingtube.service
 import android.app.Service
 import com.example.bluecodingtube.data.YoutubeVideo
 import okhttp3.OkHttpClient
+import okhttp3.internal.platform.Platform
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-
 
     private const val BASE_URL = "https://www.googleapis.com/youtube/v3/"
 
@@ -22,10 +23,10 @@ object RetrofitClient {
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
-            //.client(clientBuilder.build())
-            .build()
 
+            .build()
     }
+
 
     val searchService: YoutubeApiService by lazy {
         retrofit.create(YoutubeApiService::class.java)
