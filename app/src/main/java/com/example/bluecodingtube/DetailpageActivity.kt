@@ -1,10 +1,10 @@
 package com.example.bluecodingtube
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.bluecodingtube.databinding.ActivityDetailpageBinding
 import com.example.bluecodingtube.dataclass.searchData
@@ -34,17 +34,27 @@ class DetailpageActivity : AppCompatActivity() {
         //좋아요 클릭시 Myapge로 이동됨
         binding.apply {
             button.setOnClickListener {
-                setFragment(MyPage())
-                Log.d("Click btn_like","gogogogogogogo")
+
+                savepref()
+
             }
         }
     }
+    private fun savepref() {
+    val sharedPreferences = getSharedPreferences(KEY_Thum, Context.MODE_PRIVATE)
+    val editor = sharedPreferences.edit()
+//        editor.putInt(KEY_Thum, binding.ivDetailThumnail.여기에 뭐라고 써야하지)
+        editor.putString(KEY_Title, binding.tvDetailTitle.text.toString())
+        editor.putString(KEY_Date, binding.tvDetailDate.text.toString())
+        editor.putString(KEY_Info, binding.tvDetailInfo.text.toString())
 
-    private fun setFragment(frag: Fragment) {
-        supportFragmentManager.commit {
-            replace(R.id.DetailLayout, frag)
-            setReorderingAllowed(true)
-            addToBackStack("")
-        }
+        editor.apply()
+        Toast.makeText(applicationContext, "Saved!", Toast.LENGTH_SHORT).show()
+    }
+    companion object {
+        private const val KEY_Thum = "set_thumnail"
+        private const val KEY_Title = "set_title"
+        private const val KEY_Date = "set_date"
+        private const val KEY_Info = "set_info"
     }
 }
