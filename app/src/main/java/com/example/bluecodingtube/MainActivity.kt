@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         var viewPagerAdapter = ViewPagerAdapter(this)
         viewPagerAdapter.addFragment(HomePage())
         viewPagerAdapter.addFragment(SearchPage())
-        viewPagerAdapter.addFragment(MyPage())
+        viewPagerAdapter.addFragment(MyPageFragment())
 
 
         binding.mainView.apply {
