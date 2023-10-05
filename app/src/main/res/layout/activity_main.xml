@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_detail_title"
+        android:id="@+id/DetailLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="COTUBE"
@@ -37,9 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/star"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_title"
-        app:layout_constraintStart_toEndOf="@+id/tv_detail_title"
-        app:layout_constraintTop_toTopOf="@+id/tv_detail_title" />
+        app:layout_constraintBottom_toBottomOf="@+id/DetailLayout"
+        app:layout_constraintStart_toEndOf="@+id/DetailLayout"
+        app:layout_constraintTop_toTopOf="@+id/DetailLayout" />
 
     <FrameLayout
         android:layout_width="match_parent"

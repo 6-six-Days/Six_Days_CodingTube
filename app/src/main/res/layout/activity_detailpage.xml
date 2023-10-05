@@ -5,144 +5,117 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailpageActivity"
-    tools:layout_editor_absoluteX="-2dp"
-    tools:layout_editor_absoluteY="5dp">
+    android:id="@+id/DetailLayout">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/DetailLayout"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/backgruond_blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="18dp"
-            android:src="@drawable/ic_shared"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_cotube_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:src="@drawable/ic_star"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/Layout_thum"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="52dp"
+        android:background="#2720BF"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="100dp"
-            android:src="@drawable/happydog2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_COTUBE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ddanglite"
+        android:text="COTUBE"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/action_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/action_bar"
+        app:layout_constraintVertical_bias="0.64" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/star"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_COTUBE"
+        app:layout_constraintStart_toEndOf="@+id/tv_COTUBE"
+        app:layout_constraintTop_toTopOf="@+id/tv_COTUBE" />
+
+    <ImageView
+        android:id="@+id/iv_detail_thumnail"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar"
+        tools:srcCompat="@drawable/happydog2" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="73dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/round_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="@color/backgruond_blue"
-        android:text="좋아요"
-        android:textSize="8sp"
+        android:text="like"
         app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Layout_thum" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_thumnail" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="73dp"
-        android:layout_marginEnd="133dp"
-        android:background="@drawable/round_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="56dp"
         android:backgroundTint="@color/backgruond_blue"
-        android:text="구독"
-        android:textSize="8sp"
+        android:text="share"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/Layout_thum" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_thumnail" />
 
     <TextView
         android:id="@+id/tv_detail_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginBottom="8dp"
-        android:hint="Cotube channel name"
+        android:layout_marginTop="20dp"
+        android:text="title"
+        android:textSize="18sp"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:ellipsize="end"
+
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_detail_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_thumnail" />
 
     <TextView
         android:id="@+id/tv_detail_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="318dp"
-        android:hint="date:2023.09.25~~"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="104dp"
+        android:text="date"
+        android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_title" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_detail_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="360dp"
-        android:text="detail"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="info"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_date" />
 
