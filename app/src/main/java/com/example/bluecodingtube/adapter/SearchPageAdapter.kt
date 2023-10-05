@@ -55,7 +55,6 @@ class SearchPageAdapter(private val searchContext: Context) : RecyclerView.Adapt
 
 
 
-
             //리싸이클러뷰중 선택된 항목의 데이터를 가지고 intent 날리기, DetailActivity 호출
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailpageActivity::class.java)

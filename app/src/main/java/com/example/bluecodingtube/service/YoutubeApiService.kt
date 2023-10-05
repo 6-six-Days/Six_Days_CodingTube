@@ -16,6 +16,7 @@ interface YoutubeApiService {
         @Query("maxResults") maxResults: Int,
         @Query("channelId") channelId: String = "",
         @Query("part") part: String = "snippet",
+        @Query("kind") kind : String = "",
     ): Call<YoutubeVideo>
 
 }

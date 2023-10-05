@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.bluecodingtube.databinding.ActivityMainBinding
 import com.example.bluecodingtube.viewModel.SearchItemModel
-import com.example.codingtube.adapter.ViewPagerAdapter
+import com.example.bluecodingtube.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
