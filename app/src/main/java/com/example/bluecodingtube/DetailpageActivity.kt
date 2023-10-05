@@ -25,11 +25,12 @@ class DetailpageActivity : AppCompatActivity() {
         testList?.thumbNails.let { imageUrI ->
             Glide.with(binding.root)
                 .load(imageUrI)
-                .into(binding.imageView4)
+                .into(binding.ivDetailThumnail)
         }
-        //받아온 타이틀,날짜 연결
+//        받아온 타이틀,날짜 연결
         binding.tvDetailTitle.text = testList?.title
         binding.tvDetailDate.text = testList?.date
+        binding.tvDetailInfo.text = testList?.info
         //좋아요 클릭시 Myapge로 이동됨
         binding.apply {
             button.setOnClickListener {
