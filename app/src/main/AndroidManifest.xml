@@ -33,6 +33,8 @@
         <activity
             android:name=".Best_Recycler_View"
             android:exported="false" />
+
+<!--        이부분이 런처액티비티 -->
         <activity
             android:name=".Splash"
             android:exported="true">
