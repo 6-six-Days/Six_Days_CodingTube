@@ -22,8 +22,8 @@
             android:name=".TodayYoutuber"
             android:exported="false" />
         <activity
-            android:name=".Splash"
-            android:exported="true" />
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".Music_Recycler_View"
             android:exported="false" />
@@ -34,7 +34,7 @@
             android:name=".Best_Recycler_View"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
