@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.bluecodingtube.databinding.ActivityDetailpageBinding
-import com.example.bluecodingtube.dataclass.YouTubeVideoItem
 import com.example.bluecodingtube.dataclass.searchData
 import com.example.bluecodingtube.util.Util
 
@@ -24,12 +23,13 @@ class DetailpageActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
+        sharedPreferencesManager = Util(this)
 
         setupViews()
     }
 
     private fun setupViews() {
+
         var testList = intent.getParcelableExtra<searchData>("Data")
         // videoItem에 대한 정보를 뷰바인딩을 통해 화면에 표시하는 코드 (제목, 설명, 섬네일 등)
         binding.tvDetailTitle.text = testList?.title
