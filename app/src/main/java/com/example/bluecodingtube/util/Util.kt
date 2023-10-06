@@ -3,7 +3,6 @@ package com.example.bluecodingtube.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
-import com.example.bluecodingtube.dataclass.YouTubeVideoItem
 import com.example.bluecodingtube.dataclass.searchData
 
 import com.google.gson.Gson

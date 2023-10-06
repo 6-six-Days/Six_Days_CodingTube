@@ -24,6 +24,7 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sharedPreferencesManager = Util(requireContext())
         binding = FragmentMyPageBinding.inflate(inflater, container, false)
         setupRecyclerView()
         return binding.root
